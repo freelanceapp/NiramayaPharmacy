@@ -34,9 +34,9 @@
             <TextView
                 android:id="@+id/txtLatestSales"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:gravity="center"
-                android:padding="50dp"
+                android:padding="30dp"
                 android:text="Latest Sales"
                 android:textColor="@color/white"
                 android:textSize="@dimen/size_16" />
@@ -57,9 +57,9 @@
             <TextView
                 android:id="@+id/txtLatestExpense"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:gravity="center"
-                android:padding="50dp"
+                android:padding="30dp"
                 android:text="Latest Expenses"
                 android:textColor="@color/white"
                 android:textSize="@dimen/size_16" />
@@ -86,9 +86,9 @@
             <TextView
                 android:id="@+id/txtLatestMedicine"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:gravity="center"
-                android:padding="50dp"
+                android:padding="30dp"
                 android:text="Latest Medicine"
                 android:textColor="@color/white"
                 android:textSize="@dimen/size_16" />
@@ -109,9 +109,9 @@
             <TextView
                 android:id="@+id/txtSalesGraph"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:gravity="center"
-                android:padding="50dp"
+                android:padding="30dp"
                 android:text="Sales Graph"
                 android:textColor="@color/white"
                 android:textSize="@dimen/size_16" />

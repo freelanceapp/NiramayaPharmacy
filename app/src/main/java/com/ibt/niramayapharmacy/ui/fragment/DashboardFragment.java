@@ -1,6 +1,5 @@
 package com.ibt.niramayapharmacy.ui.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -8,11 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ibt.niramayapharmacy.R;
-import com.ibt.niramayapharmacy.ui.activity.dashboard_activity.LatestExpensesActivity;
-import com.ibt.niramayapharmacy.ui.activity.dashboard_activity.LatestMedicineActivity;
+import com.ibt.niramayapharmacy.constant.Constant;
+import com.ibt.niramayapharmacy.ui.fragment.dashboard_fragment.LatestExpensesFragment;
+import com.ibt.niramayapharmacy.ui.fragment.dashboard_fragment.LatestMedicineFragment;
 import com.ibt.niramayapharmacy.utils.BaseFragment;
 import com.ibt.niramayapharmacy.utils.ConnectionDetector;
 
+import static com.ibt.niramayapharmacy.ui.activity.HomeActivity.fragmentUtilsHome;
 import static com.ibt.niramayapharmacy.ui.activity.HomeActivity.imgSearch;
 import static com.ibt.niramayapharmacy.ui.activity.HomeActivity.imgSort;
 
@@ -46,12 +47,13 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.txtLatestSales:
+                fragmentUtilsHome.replaceFragment(new LatestSalesFragment(), Constant.LatestSalesFragment, R.id.home_frame);
                 break;
             case R.id.txtLatestExpense:
-                startActivity(new Intent(mContext, LatestExpensesActivity.class));
+                fragmentUtilsHome.replaceFragment(new LatestExpensesFragment(), Constant.LatestExpensesFragment, R.id.home_frame);
                 break;
             case R.id.txtLatestMedicine:
-                startActivity(new Intent(mContext, LatestMedicineActivity.class));
+                fragmentUtilsHome.replaceFragment(new LatestMedicineFragment(), Constant.LatestMedicineFragment, R.id.home_frame);
                 break;
             case R.id.txtSalesGraph:
                 break;

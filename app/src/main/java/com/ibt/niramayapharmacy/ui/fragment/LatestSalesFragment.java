@@ -15,7 +15,10 @@ import com.ibt.niramayapharmacy.utils.BaseFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.ibt.niramayapharmacy.ui.activity.HomeActivity.txtTitle;
+
 public class LatestSalesFragment extends BaseFragment {
+
     private View rootview;
     private LatestSalesAdapter latestSalesAdapter;
     private List<String> latestSalesList = new ArrayList<>();
@@ -23,13 +26,13 @@ public class LatestSalesFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         rootview = inflater.inflate(R.layout.fragment_latest_sales, container, false);
         init();
         return rootview;
     }
 
     private void init() {
+        txtTitle.setText("Latest Sales");
         RecyclerView rvLatestSales = rootview.findViewById(R.id.rvLatestSales);
 
         for (int i = 0; i <= 6; i++) {

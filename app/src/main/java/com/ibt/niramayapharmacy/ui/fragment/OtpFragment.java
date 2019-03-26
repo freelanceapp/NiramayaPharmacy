@@ -46,7 +46,7 @@ public class OtpFragment extends BaseFragment implements OnClickListener {
         XmlResourceParser xrp = getResources().getXml(R.drawable.text_selector);
         try {
             ColorStateList csl = ColorStateList.createFromXml(getResources(), xrp);
-            back.setTextColor(csl);
+            //back.setTextColor(csl);
             submit.setTextColor(csl);
         } catch (IOException e) {
             e.printStackTrace();

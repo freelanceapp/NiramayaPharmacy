@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ibt.niramayapharmacy.R;
+import com.ibt.niramayapharmacy.adapter.AddMedicineAdapter;
 import com.ibt.niramayapharmacy.utils.BaseFragment;
 
 import java.util.ArrayList;

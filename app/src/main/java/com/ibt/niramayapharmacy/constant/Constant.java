@@ -9,4 +9,9 @@ public class Constant {
     public static final String LatestSalesFragment = "LatestSalesFragment";
     public static final String ProfileFragment = "ProfileFragment";
     public static final String AddMedicineFragment = "AddMedicineFragment";
+    public static final String InvoiceFragment = "InvoiceFragment";
+    public static final String DashboardFragment = "DashboardFragment";
+
+    public static final String LatestExpensesFragment = "LatestExpensesFragment";
+    public static final String LatestMedicineFragment = "LatestMedicineFragment";
 }

@@ -1,25 +1,22 @@
 package com.ibt.niramayapharmacy.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.ibt.niramayapharmacy.R;
 
 import java.util.List;
 
-public class PrescriptionListAdapter extends RecyclerView.Adapter<PrescriptionListAdapter.MyViewHolder> {
+public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.MyViewHolder> {
 
     private List<String> vendorLists;
     private Context mContext;
     private View.OnClickListener onClickListener;
 
-    public PrescriptionListAdapter(List<String> vendorLists, Context mContext, View.OnClickListener onClickListener) {
+    public InvoiceListAdapter(List<String> vendorLists, Context mContext, View.OnClickListener onClickListener) {
         this.vendorLists = vendorLists;
         this.mContext = mContext;
         this.onClickListener = onClickListener;
@@ -27,7 +24,7 @@ public class PrescriptionListAdapter extends RecyclerView.Adapter<PrescriptionLi
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_prescription_list, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_invoice, parent, false);
         return new MyViewHolder(itemView);
     }
 
@@ -42,14 +39,10 @@ public class PrescriptionListAdapter extends RecyclerView.Adapter<PrescriptionLi
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView txtOpen;
-        public ImageView rc_img;
-        private CardView cardViewItem;
 
         public MyViewHolder(View view) {
             super(view);
-            cardViewItem = view.findViewById(R.id.cardViewItem);
-            txtOpen = view.findViewById(R.id.txtOpen);
+
         }
     }
 

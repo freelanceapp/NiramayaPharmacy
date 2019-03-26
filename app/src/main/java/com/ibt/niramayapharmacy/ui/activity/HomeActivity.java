@@ -10,7 +10,9 @@ import android.widget.TextView;
 
 import com.ibt.niramayapharmacy.R;
 import com.ibt.niramayapharmacy.constant.Constant;
+import com.ibt.niramayapharmacy.ui.fragment.AddMedicineFragment;
 import com.ibt.niramayapharmacy.ui.fragment.DashboardFragment;
+import com.ibt.niramayapharmacy.ui.fragment.InvoiceFragment;
 import com.ibt.niramayapharmacy.ui.fragment.PrescriptionsFragment;
 import com.ibt.niramayapharmacy.utils.BaseActivity;
 import com.ibt.niramayapharmacy.utils.FragmentUtils;
@@ -22,7 +24,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     public static TextView txtTitle;
     public static ImageView imgSearch, imgSort;
     private SlidingRootNav slidingRootNav;
-    private FragmentUtils fragmentUtils;
+    public static FragmentUtils fragmentUtilsHome;
     private FragmentManager fragmentManager;
 
     @Override
@@ -39,8 +41,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         txtTitle = findViewById(R.id.txtTitle);
 
         fragmentManager = getSupportFragmentManager();
-        fragmentUtils = new FragmentUtils(fragmentManager);
-        fragmentUtils.replaceFragment(new DashboardFragment(), Constant.HomeFragment, R.id.home_frame);
+        fragmentUtilsHome = new FragmentUtils(fragmentManager);
+        txtTitle.setText("Dashboard");
+        fragmentUtilsHome.replaceFragment(new DashboardFragment(), Constant.HomeFragment, R.id.home_frame);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -70,34 +73,69 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Fragment HomeFragment = fragmentManager.findFragmentByTag(Constant.HomeFragment);
-        Fragment PrescriptionFragment = fragmentManager.findFragmentByTag(Constant.PrescriptionFragment);
-        Fragment LatestSalesFragment = fragmentManager.findFragmentByTag(Constant.LatestSalesFragment);
-        Fragment ProfileFragment = fragmentManager.findFragmentByTag(Constant.ProfileFragment);
-        Fragment AddMedicineFragment = fragmentManager.findFragmentByTag(Constant.AddMedicineFragment);
+        Fragment HomeFragmentTag = fragmentManager.findFragmentByTag(Constant.HomeFragment);
+        Fragment PrescriptionFragmentTag = fragmentManager.findFragmentByTag(Constant.PrescriptionFragment);
+        Fragment LatestSalesFragmentTag = fragmentManager.findFragmentByTag(Constant.LatestSalesFragment);
+        Fragment ProfileFragmentTag = fragmentManager.findFragmentByTag(Constant.ProfileFragment);
+        Fragment AddMedicineFragmentTag = fragmentManager.findFragmentByTag(Constant.AddMedicineFragment);
+        Fragment InvoiceFragmentTag = fragmentManager.findFragmentByTag(Constant.InvoiceFragment);
+
         switch (v.getId()) {
             case R.id.txtDashboard:
                 txtTitle.setText("Dashboard");
-                if (HomeFragment == null) {
-                    fragmentUtils.replaceFragment(new DashboardFragment(), Constant.HomeFragment, R.id.home_frame);
+                if (HomeFragmentTag == null) {
+                    fragmentUtilsHome.replaceFragment(new DashboardFragment(), Constant.HomeFragment, R.id.home_frame);
                 }
                 break;
             case R.id.txtPrescription:
                 txtTitle.setText("Prescription");
-                if (PrescriptionFragment == null) {
-                    fragmentUtils.replaceFragment(new PrescriptionsFragment(), Constant.PrescriptionFragment, R.id.home_frame);
+                if (PrescriptionFragmentTag == null) {
+                    fragmentUtilsHome.replaceFragment(new PrescriptionsFragment(), Constant.PrescriptionFragment, R.id.home_frame);
+                }
+                break;
+            case R.id.txtInvoice:
+                txtTitle.setText("Invoice");
+                if (InvoiceFragmentTag == null) {
+                    fragmentUtilsHome.replaceFragment(new InvoiceFragment(), Constant.InvoiceFragment, R.id.home_frame);
+                }
+                break;
+            case R.id.txtAddMedicine:
+                txtTitle.setText("Add Medicine");
+                if (AddMedicineFragmentTag == null) {
+                    fragmentUtilsHome.replaceFragment(new AddMedicineFragment(), Constant.AddMedicineFragment, R.id.home_frame);
                 }
                 break;
         }
+        slidingRootNav.closeMenu();
     }
 
     @Override
     public void onBackPressed() {
-        Fragment HomeFragment = fragmentManager.findFragmentByTag(Constant.HomeFragment);
-        Fragment PrescriptionFragment = fragmentManager.findFragmentByTag(Constant.PrescriptionFragment);
-        Fragment LatestSalesFragment = fragmentManager.findFragmentByTag(Constant.LatestSalesFragment);
-        Fragment ProfileFragment = fragmentManager.findFragmentByTag(Constant.ProfileFragment);
-        Fragment AddMedicineFragment = fragmentManager.findFragmentByTag(Constant.AddMedicineFragment);
+        Fragment HomeFragmentTag = fragmentManager.findFragmentByTag(Constant.HomeFragment);
+        Fragment PrescriptionFragmentTag = fragmentManager.findFragmentByTag(Constant.PrescriptionFragment);
+        Fragment ProfileFragmentTag = fragmentManager.findFragmentByTag(Constant.ProfileFragment);
+        Fragment AddMedicineFragmentTag = fragmentManager.findFragmentByTag(Constant.AddMedicineFragment);
+        Fragment InvoiceFragmentTag = fragmentManager.findFragmentByTag(Constant.InvoiceFragment);
 
+        Fragment LatestExpensesFragmentTag = fragmentManager.findFragmentByTag(Constant.LatestExpensesFragment);
+        Fragment LatestSalesFragmentTag = fragmentManager.findFragmentByTag(Constant.LatestSalesFragment);
+        Fragment LatestMedicineFragmentTag = fragmentManager.findFragmentByTag(Constant.LatestMedicineFragment);
+
+        if (LatestExpensesFragmentTag != null) {
+            txtTitle.setText("Dashboard");
+            fragmentUtilsHome.replaceBackFragment(new DashboardFragment(), Constant.DashboardFragment, R.id.home_frame);
+        } else if (LatestSalesFragmentTag != null) {
+            txtTitle.setText("Dashboard");
+            fragmentUtilsHome.replaceBackFragment(new DashboardFragment(), Constant.DashboardFragment, R.id.home_frame);
+        } else if (LatestMedicineFragmentTag != null) {
+            txtTitle.setText("Dashboard");
+            fragmentUtilsHome.replaceBackFragment(new DashboardFragment(), Constant.DashboardFragment, R.id.home_frame);
+        } else if (InvoiceFragmentTag != null) {
+            txtTitle.setText("Dashboard");
+            fragmentUtilsHome.replaceBackFragment(new DashboardFragment(), Constant.DashboardFragment, R.id.home_frame);
+        } else if (PrescriptionFragmentTag != null) {
+            txtTitle.setText("Dashboard");
+            fragmentUtilsHome.replaceBackFragment(new DashboardFragment(), Constant.DashboardFragment, R.id.home_frame);
+        }
     }
 }

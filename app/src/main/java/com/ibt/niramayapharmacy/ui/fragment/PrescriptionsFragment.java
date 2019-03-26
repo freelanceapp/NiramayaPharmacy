@@ -2,18 +2,15 @@ package com.ibt.niramayapharmacy.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.ibt.niramayapharmacy.R;
-import com.ibt.niramayapharmacy.adapter.PrescriptionListAdapter;
+import com.ibt.niramayapharmacy.adapter.tabs_adapter.PrescriptionPagerAdapter;
 import com.ibt.niramayapharmacy.utils.BaseFragment;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.ibt.niramayapharmacy.ui.activity.HomeActivity.imgSearch;
 import static com.ibt.niramayapharmacy.ui.activity.HomeActivity.imgSort;
@@ -21,8 +18,9 @@ import static com.ibt.niramayapharmacy.ui.activity.HomeActivity.imgSort;
 
 public class PrescriptionsFragment extends BaseFragment implements View.OnClickListener {
 
-    private List<String> prescriptionList = new ArrayList<>();
     private View rootView;
+    private ViewPager viewPager;
+    private TabLayout tab;
 
     @Nullable
     @Override
@@ -35,21 +33,19 @@ public class PrescriptionsFragment extends BaseFragment implements View.OnClickL
     private void init() {
         imgSearch.setVisibility(View.GONE);
         imgSort.setVisibility(View.VISIBLE);
-        prescriptionListApi();
+        setViewPager();
     }
 
-    private void prescriptionListApi() {
-        for (int i = 0; i < 10; i++) {
-            prescriptionList.add("Name");
+    private void setViewPager() {
+        viewPager = rootView.findViewById(R.id.viewPager);
+        tab = rootView.findViewById(R.id.tabs);
+        if (viewPager != null) {
+            PrescriptionPagerAdapter adapter = new PrescriptionPagerAdapter(getChildFragmentManager());
+            viewPager.setAdapter(adapter);
+            tab.setupWithViewPager(viewPager);
         }
-        RecyclerView recyclerViewPrescription = rootView.findViewById(R.id.recyclerViewPrescription);
-        recyclerViewPrescription.setHasFixedSize(true);
-        recyclerViewPrescription.setLayoutManager(new GridLayoutManager(getActivity(),
-                2, GridLayoutManager.VERTICAL, false));
-        PrescriptionListAdapter prescriptionAdapter = new PrescriptionListAdapter(prescriptionList, mContext, this);
-        recyclerViewPrescription.setAdapter(prescriptionAdapter);
-        prescriptionAdapter.notifyDataSetChanged();
     }
+
 
     @Override
     public void onClick(View v) {

@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:background="@color/gray_i"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="16dp"
             android:layout_marginTop="20dp"
-            android:padding="10dp"
             android:text="Add Medicine"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -29,6 +28,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:padding="16dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -227,13 +227,13 @@
                     android:textStyle="normal" />
 
                 <Button
-                    android:id="@+id/btn_done"
+                    android:id="@+id/btnAdd"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_alignParentBottom="true"
                     android:layout_margin="40dp"
                     android:background="@drawable/layout_bg5"
-                    android:text="Done"
+                    android:text="Add"
                     android:textColor="@color/white"
                     android:textSize="16dp" />
             </LinearLayout>

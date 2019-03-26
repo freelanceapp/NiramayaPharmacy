@@ -15,12 +15,14 @@ import java.util.List;
 
 public class AddMedicineAdapter extends RecyclerView.Adapter<AddMedicineAdapter.MyViewHolder> {
 
-    private List<String> vendorLists;
+    private List<String> addMedicineList;
     private Context mContext;
+    private View.OnClickListener onClickListener;
 
-    public AddMedicineAdapter(List<String> vendorLists, Context mContext) {
-        this.vendorLists = vendorLists;
+    public AddMedicineAdapter(List<String> addMedicineList, Context mContext,View.OnClickListener onClickListener) {
+        this.addMedicineList = addMedicineList;
         this.mContext = mContext;
+        this.onClickListener = onClickListener;
     }
 
     @Override
@@ -31,23 +33,22 @@ public class AddMedicineAdapter extends RecyclerView.Adapter<AddMedicineAdapter.
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-
+           holder.ivViewMedicine.setTag(position);
+           holder.ivViewMedicine.setOnClickListener(onClickListener);
     }
 
     @Override
     public int getItemCount() {
-        return vendorLists.size();
+        return addMedicineList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView  txtOpen;
-        public ImageView rc_img;
-        private CardView cardViewItem;
+        private ImageView ivViewMedicine;
 
         public MyViewHolder(View view) {
             super(view);
-            cardViewItem = view.findViewById(R.id.cardViewItem);
-            txtOpen = view.findViewById(R.id.txtOpen);
+
+            ivViewMedicine = itemView.findViewById(R.id.ivViewMedicine);
         }
     }
 

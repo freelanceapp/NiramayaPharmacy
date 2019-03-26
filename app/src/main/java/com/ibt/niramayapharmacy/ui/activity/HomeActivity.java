@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.ibt.niramayapharmacy.R;
 import com.ibt.niramayapharmacy.constant.Constant;
 import com.ibt.niramayapharmacy.ui.fragment.AddMedicineFragment;
+import com.ibt.niramayapharmacy.ui.fragment.FragmentTabDoseChart;
 import com.ibt.niramayapharmacy.ui.fragment.HomeFragment;
 import com.ibt.niramayapharmacy.ui.fragment.LatestSalesFragment;
 import com.ibt.niramayapharmacy.ui.fragment.PrescriptionsFragment;
@@ -76,7 +77,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         Fragment HomeFragment = fragmentManager.findFragmentByTag(Constant.HomeFragment);
         Fragment PrescriptionFragment = fragmentManager.findFragmentByTag(Constant.PrescriptionFragment);
-        Fragment LatestSalesFragment = fragmentManager.findFragmentByTag(Constant.LatestSalesFragment);
         Fragment ProfileFragment = fragmentManager.findFragmentByTag(Constant.ProfileFragment);
         Fragment AddMedicineFragment = fragmentManager.findFragmentByTag(Constant.AddMedicineFragment);
         switch (v.getId()) {
@@ -93,19 +93,13 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                     fragmentUtils.replaceFragment(new PrescriptionsFragment(), Constant.PrescriptionFragment, R.id.home_frame);
                 }
                 break;
-            case R.id.txtLatestSales:
-                txtTitle.setText("Latest Sales");
-                if (LatestSalesFragment == null) {
-                    fragmentUtils.replaceFragment(new LatestSalesFragment(), Constant.LatestSalesFragment, R.id.home_frame);
-                }
-                break;
             case R.id.txtProfile:
                 txtTitle.setText("Profile");
                 if (ProfileFragment == null) {
                     fragmentUtils.replaceFragment(new ProfileFragment(), Constant.ProfileFragment, R.id.home_frame);
                 }
                 break;
-                case R.id.txtAddMedicine:
+            case R.id.txtAddMedicine:
                 txtTitle.setText("Add Medicine");
                 if (AddMedicineFragment == null) {
                     fragmentUtils.replaceFragment(new AddMedicineFragment(), Constant.AddMedicineFragment, R.id.home_frame);
@@ -119,7 +113,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     public void onBackPressed() {
         Fragment HomeFragment = fragmentManager.findFragmentByTag(Constant.HomeFragment);
         Fragment PrescriptionFragment = fragmentManager.findFragmentByTag(Constant.PrescriptionFragment);
-        Fragment LatestSalesFragment = fragmentManager.findFragmentByTag(Constant.LatestSalesFragment);
         Fragment ProfileFragment = fragmentManager.findFragmentByTag(Constant.ProfileFragment);
         Fragment AddMedicineFragment = fragmentManager.findFragmentByTag(Constant.AddMedicineFragment);
 
@@ -127,8 +120,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             finish();
         } else if (PrescriptionFragment != null) {
             fragmentUtils.replaceFragment(new HomeFragment(), Constant.HomeFragment, R.id.home_frame);
-        } else if (LatestSalesFragment != null) {
-            fragmentUtils.replaceFragment(new LatestSalesFragment(), Constant.LatestSalesFragment, R.id.home_frame);
         } else if (ProfileFragment != null) {
             fragmentUtils.replaceFragment(new ProfileFragment(), Constant.ProfileFragment, R.id.home_frame);
         } else if (AddMedicineFragment != null) {

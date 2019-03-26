@@ -1,10 +1,6 @@
 package com.ibt.niramayapharmacy.ui.fragment;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -19,31 +15,26 @@ import android.widget.Toast;
 
 import com.ibt.niramayapharmacy.R;
 import com.ibt.niramayapharmacy.constant.Constant;
+import com.ibt.niramayapharmacy.utils.BaseFragment;
 import com.ibt.niramayapharmacy.utils.ConnectionDetector;
 
+import static com.ibt.niramayapharmacy.ui.activity.LoginActivity.fragmentUtils;
 
-@SuppressLint("ValidFragment")
-public class LoginFragment extends Fragment implements OnClickListener {
+public class LoginFragment extends BaseFragment implements OnClickListener {
 
     private static View view;
     private static Button loginButton;
     private static Animation shakeAnimation;
-    private static FragmentManager fragmentManager;
     private static EditText etMobileNumber, etAadharNumber;
-    Context ctx;
-    ConnectionDetector connectionDetector;
-    //SessionManager sessionManager;
-
-    @SuppressLint("ValidFragment")
-    public LoginFragment(Context ctx) {
-        this.ctx = ctx;
-        //sessionManager = new SessionManager(ctx);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.login_layout, container, false);
+        activity = getActivity();
+        mContext = getActivity();
+        cd = new ConnectionDetector(mContext);
+        //retrofitApiClient = RetrofitService.getRetrofit();
         initViews();
         setListeners();
         return view;
@@ -51,11 +42,9 @@ public class LoginFragment extends Fragment implements OnClickListener {
 
     // Initiate Views
     private void initViews() {
-        fragmentManager = getActivity().getSupportFragmentManager();
         loginButton = view.findViewById(R.id.loginBtn);
         etMobileNumber = view.findViewById(R.id.etMobileNumber);
         etAadharNumber = view.findViewById(R.id.etAadharNumber);
-        // loginLayout = (LinearLayout) view.findViewById(R.id.login_layout);
 
         // Load ShakeAnimation
         shakeAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.shake);
@@ -69,7 +58,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                Toast.makeText(ctx, "Mobile Number", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Mobile Number", Toast.LENGTH_SHORT).show();
 
             }
 
@@ -87,7 +76,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                Toast.makeText(ctx, "Aadhar Number", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Aadhar Number", Toast.LENGTH_SHORT).show();
 
             }
 
@@ -111,11 +100,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
         switch (v.getId()) {
             case R.id.loginBtn:
                 // checkValidation();
-                fragmentManager
-                        .beginTransaction()
-                        .setCustomAnimations(R.anim.right_enter, R.anim.left_out)
-                        .replace(R.id.login_frame, new OtpFragment(),
-                                Constant.Otp_Fragment).commit();
+                fragmentUtils.replaceFragment(new OtpFragment(), Constant.Otp_Fragment, R.id.login_frame);
                 break;
         }
 

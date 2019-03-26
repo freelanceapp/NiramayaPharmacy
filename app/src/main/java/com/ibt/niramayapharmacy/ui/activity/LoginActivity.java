@@ -1,6 +1,5 @@
 package com.ibt.niramayapharmacy.ui.activity;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,44 +8,24 @@ import com.ibt.niramayapharmacy.R;
 import com.ibt.niramayapharmacy.constant.Constant;
 import com.ibt.niramayapharmacy.ui.fragment.LoginFragment;
 import com.ibt.niramayapharmacy.utils.BaseActivity;
-
+import com.ibt.niramayapharmacy.utils.FragmentUtils;
 
 public class LoginActivity extends BaseActivity {
 
-    private static FragmentManager fragmentManager;
-    Context ctx;
-    //SessionManager sessionManager;
+    public static FragmentManager fragmentManager;
+    public static FragmentUtils fragmentUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        ctx = this;
-        // checkSession();
+
         fragmentManager = getSupportFragmentManager();
+        fragmentUtils = new FragmentUtils(fragmentManager);
+
         if (savedInstanceState == null) {
-            fragmentManager
-                    .beginTransaction()
-                    .replace(R.id.login_frame, new LoginFragment(ctx), Constant.LoginFragment).commit();
+            fragmentUtils.replaceFragment(new LoginFragment(), Constant.LoginFragment, R.id.login_frame);
         }
-    }
-
-    /*private void checkSession() {
-        sessionManager = new SessionManager(ctx);
-        boolean login = AppPreference.getBooleanPreference(ctx, Constant.IS_LOGIN);
-        if (login) {
-            startActivity(new Intent(ctx, MainActivity.class));
-            finish();
-        }
-    }*/
-
-    // Replace Login Fragment with animation
-    public void replaceLoginFragment() {
-        fragmentManager
-                .beginTransaction()
-                .setCustomAnimations(R.anim.left_enter, R.anim.right_out)
-                .replace(R.id.login_frame, new LoginFragment(ctx),
-                        Constant.LoginFragment).commit();
     }
 
     @Override
@@ -58,9 +37,9 @@ public class LoginActivity extends BaseActivity {
                 .findFragmentByTag(Constant.Otp_Fragment);
 
         if (SignUp_Fragment != null)
-            replaceLoginFragment();
+            fragmentUtils.replaceFragment(new LoginFragment(), Constant.LoginFragment, R.id.login_frame);
         else if (ForgotPassword_Fragment != null)
-            replaceLoginFragment();
+            fragmentUtils.replaceFragment(new LoginFragment(), Constant.LoginFragment, R.id.login_frame);
         else
             super.onBackPressed();
     }

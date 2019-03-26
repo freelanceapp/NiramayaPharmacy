@@ -3,7 +3,6 @@ package com.ibt.niramayapharmacy.ui.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,8 +12,8 @@ import com.ibt.niramayapharmacy.R;
 import com.ibt.niramayapharmacy.constant.Constant;
 import com.ibt.niramayapharmacy.ui.fragment.AddMedicineFragment;
 import com.ibt.niramayapharmacy.ui.fragment.FragmentTabDoseChart;
-import com.ibt.niramayapharmacy.ui.fragment.HomeFragment;
 import com.ibt.niramayapharmacy.ui.fragment.LatestSalesFragment;
+import com.ibt.niramayapharmacy.ui.fragment.DashboardFragment;
 import com.ibt.niramayapharmacy.ui.fragment.PrescriptionsFragment;
 import com.ibt.niramayapharmacy.ui.fragment.ProfileFragment;
 import com.ibt.niramayapharmacy.utils.BaseActivity;
@@ -45,7 +44,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
         fragmentManager = getSupportFragmentManager();
         fragmentUtils = new FragmentUtils(fragmentManager);
-        fragmentUtils.replaceFragment(new HomeFragment(), Constant.HomeFragment, R.id.home_frame);
+        fragmentUtils.replaceFragment(new DashboardFragment(), Constant.HomeFragment, R.id.home_frame);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -61,16 +60,16 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void clickListener() {
-        findViewById(R.id.txtHome).setOnClickListener(this);
+        findViewById(R.id.txtDashboard).setOnClickListener(this);
         findViewById(R.id.txtPrescription).setOnClickListener(this);
-        findViewById(R.id.txtReports).setOnClickListener(this);
-        findViewById(R.id.txtInvoice).setOnClickListener(this);
-        findViewById(R.id.txtBed).setOnClickListener(this);
-        findViewById(R.id.txtHistory).setOnClickListener(this);
-        findViewById(R.id.txtBloodDonation).setOnClickListener(this);
+        findViewById(R.id.txtMedicine).setOnClickListener(this);
         findViewById(R.id.txtAddMedicine).setOnClickListener(this);
+        findViewById(R.id.txtSales).setOnClickListener(this);
+        findViewById(R.id.txtExpenses).setOnClickListener(this);
         findViewById(R.id.txtProfile).setOnClickListener(this);
-        findViewById(R.id.txtLatestSales).setOnClickListener(this);
+        findViewById(R.id.txtNotification).setOnClickListener(this);
+        findViewById(R.id.txtSetting).setOnClickListener(this);
+        findViewById(R.id.txtInvoice).setOnClickListener(this);
     }
 
     @Override
@@ -80,11 +79,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         Fragment ProfileFragment = fragmentManager.findFragmentByTag(Constant.ProfileFragment);
         Fragment AddMedicineFragment = fragmentManager.findFragmentByTag(Constant.AddMedicineFragment);
         switch (v.getId()) {
-
-            case R.id.txtHome:
-                txtTitle.setText("Home");
+            case R.id.txtDashboard:
+                txtTitle.setText("Dashboard");
                 if (HomeFragment == null) {
-                    fragmentUtils.replaceFragment(new HomeFragment(), Constant.HomeFragment, R.id.home_frame);
+                    fragmentUtils.replaceFragment(new DashboardFragment(), Constant.HomeFragment, R.id.home_frame);
                 }
                 break;
             case R.id.txtPrescription:
@@ -111,15 +109,15 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
-        Fragment HomeFragment = fragmentManager.findFragmentByTag(Constant.HomeFragment);
+        Fragment DashboardFragment = fragmentManager.findFragmentByTag(Constant.HomeFragment);
         Fragment PrescriptionFragment = fragmentManager.findFragmentByTag(Constant.PrescriptionFragment);
         Fragment ProfileFragment = fragmentManager.findFragmentByTag(Constant.ProfileFragment);
         Fragment AddMedicineFragment = fragmentManager.findFragmentByTag(Constant.AddMedicineFragment);
 
-        if (HomeFragment != null) {
+        if (DashboardFragment != null) {
             finish();
         } else if (PrescriptionFragment != null) {
-            fragmentUtils.replaceFragment(new HomeFragment(), Constant.HomeFragment, R.id.home_frame);
+            fragmentUtils.replaceFragment(new DashboardFragment(), Constant.HomeFragment, R.id.home_frame);
         } else if (ProfileFragment != null) {
             fragmentUtils.replaceFragment(new ProfileFragment(), Constant.ProfileFragment, R.id.home_frame);
         } else if (AddMedicineFragment != null) {

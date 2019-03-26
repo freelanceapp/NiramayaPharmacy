@@ -236,11 +236,11 @@
                         app:cardElevation="0dp">
 
                         <TextView
-                            android:id="@+id/txtDocuments"
+                            android:id="@+id/txtAddMedicine"
                             android:layout_width="100dp"
                             android:layout_height="60dp"
                             android:gravity="center"
-                            android:text="Documents"
+                            android:text="Add Medicine"
                             android:textColor="@color/white"
                             android:textSize="@dimen/size_14" />
                     </android.support.v7.widget.CardView>
@@ -262,13 +262,13 @@
                         app:cardElevation="0dp">
 
                         <TextView
-                            android:id="@+id/txtSettings"
+                            android:id="@+id/txtProfile"
                             android:layout_width="100dp"
                             android:layout_height="60dp"
                             android:gravity="center"
                             android:paddingLeft="8dp"
                             android:paddingRight="8dp"
-                            android:text="Settings"
+                            android:text="Profile"
                             android:textColor="@color/white"
                             android:textSize="@dimen/size_14" />
                     </android.support.v7.widget.CardView>
@@ -282,11 +282,11 @@
                         app:cardElevation="0dp">
 
                         <TextView
-                            android:id="@+id/txtAddUser"
+                            android:id="@+id/txtLatestSales"
                             android:layout_width="100dp"
                             android:layout_height="60dp"
                             android:gravity="center"
-                            android:text="Add user"
+                            android:text="Latest Sales"
                             android:textColor="@color/white"
                             android:textSize="@dimen/size_14" />
                     </android.support.v7.widget.CardView>

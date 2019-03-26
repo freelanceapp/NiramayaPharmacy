@@ -16,12 +16,16 @@ import com.ibt.niramayapharmacy.R;
 import com.ibt.niramayapharmacy.ui.activity.HomeActivity;
 import com.ibt.niramayapharmacy.utils.BaseFragment;
 
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
+
 
 public class OtpFragment extends BaseFragment implements OnClickListener {
-    private static View view;
 
-    private static EditText emailId;
-    private static TextView submit, back;
+    private View view;
+    private EditText emailId;
+    private TextView submit, back;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,18 +42,17 @@ public class OtpFragment extends BaseFragment implements OnClickListener {
         submit = (TextView) view.findViewById(R.id.btnSubmit);
         //back = (TextView) view.findViewById(R.id.backToLoginBtn);
 
-        // Setting text selector over textviews
-        @SuppressLint("ResourceType") XmlResourceParser xrp = getResources().getXml(R.drawable.text_selector);
+        @SuppressLint("ResourceType")
+        XmlResourceParser xrp = getResources().getXml(R.drawable.text_selector);
         try {
-            ColorStateList csl = ColorStateList.createFromXml(getResources(),
-                    xrp);
-
+            ColorStateList csl = ColorStateList.createFromXml(getResources(), xrp);
             back.setTextColor(csl);
             submit.setTextColor(csl);
-
-        } catch (Exception e) {
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
         }
-
     }
 
     // Set Listeners over buttons

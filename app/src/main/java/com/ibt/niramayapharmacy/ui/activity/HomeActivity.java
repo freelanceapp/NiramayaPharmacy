@@ -3,7 +3,6 @@ package com.ibt.niramayapharmacy.ui.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,7 +10,7 @@ import android.widget.TextView;
 
 import com.ibt.niramayapharmacy.R;
 import com.ibt.niramayapharmacy.constant.Constant;
-import com.ibt.niramayapharmacy.ui.fragment.HomeFragment;
+import com.ibt.niramayapharmacy.ui.fragment.DashboardFragment;
 import com.ibt.niramayapharmacy.ui.fragment.PrescriptionsFragment;
 import com.ibt.niramayapharmacy.utils.BaseActivity;
 import com.ibt.niramayapharmacy.utils.FragmentUtils;
@@ -41,7 +40,7 @@ public class HomeActivity extends BaseActivity  implements View.OnClickListener 
 
         fragmentManager = getSupportFragmentManager();
         fragmentUtils = new FragmentUtils(fragmentManager);
-        fragmentUtils.replaceFragment(new HomeFragment(), Constant.HomeFragment, R.id.home_frame);
+        fragmentUtils.replaceFragment(new DashboardFragment(), Constant.HomeFragment, R.id.home_frame);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -57,16 +56,15 @@ public class HomeActivity extends BaseActivity  implements View.OnClickListener 
     }
 
     private void clickListener() {
-        findViewById(R.id.txtHome).setOnClickListener(this);
+        findViewById(R.id.txtDashboard).setOnClickListener(this);
         findViewById(R.id.txtPrescription).setOnClickListener(this);
-        findViewById(R.id.txtReports).setOnClickListener(this);
-        findViewById(R.id.txtInvoice).setOnClickListener(this);
-        findViewById(R.id.txtBed).setOnClickListener(this);
-        findViewById(R.id.txtHistory).setOnClickListener(this);
-        findViewById(R.id.txtBloodDonation).setOnClickListener(this);
-        findViewById(R.id.txtDocuments).setOnClickListener(this);
+        findViewById(R.id.txtMedicine).setOnClickListener(this);
+        findViewById(R.id.txtAddMedicine).setOnClickListener(this);
+        findViewById(R.id.txtSales).setOnClickListener(this);
+        findViewById(R.id.txtExpenses).setOnClickListener(this);
+        findViewById(R.id.txtProfile).setOnClickListener(this);
+        findViewById(R.id.txtNotification).setOnClickListener(this);
         findViewById(R.id.txtSettings).setOnClickListener(this);
-        findViewById(R.id.txtAddUser).setOnClickListener(this);
     }
 
    @Override
@@ -81,10 +79,10 @@ public class HomeActivity extends BaseActivity  implements View.OnClickListener 
         //Fragment ReportFragment = fragmentManager.findFragmentByTag(Constant.ReportsFragment);
         switch (v.getId()) {
 
-            case R.id.txtHome:
-                txtTitle.setText("Home");
+            case R.id.txtDashboard:
+                txtTitle.setText("Dashboard");
                 if (HomeFragment == null) {
-                    fragmentUtils.replaceFragment(new HomeFragment(), Constant.HomeFragment, R.id.home_frame);
+                    fragmentUtils.replaceFragment(new DashboardFragment(), Constant.HomeFragment, R.id.home_frame);
                 }
                 break;
             case R.id.txtPrescription:
@@ -93,28 +91,28 @@ public class HomeActivity extends BaseActivity  implements View.OnClickListener 
                     fragmentUtils.replaceFragment(new PrescriptionsFragment(), Constant.PrescriptionFragment, R.id.home_frame);
                 }
                 break;
-            /*case R.id.txtReports:
-                txtTitle.setText("Report");
+            /*case R.id.txtMedicine:
+                txtTitle.setText("Medicine");
                 if (ReportFragment == null) {
                     fragmentUtils.replaceFragment(new ReportFragment(), Constant.ReportsFragment, R.id.home_frame);
                 }
                 break;
-            case R.id.txtInvoice:
+            case R.id.txtAddMedicine:
                 txtTitle.setText("Invoice");
                 if (InvoiceFragment == null) {
                     fragmentUtils.replaceFragment(new InvoiceFragment(), Constant.InvoiceFragment, R.id.home_frame);
                 }
                 break;
-            case R.id.txtBed:
+            case R.id.Sales:
                 txtTitle.setText("Bed History");
                 if (BedFragment == null) {
                     fragmentUtils.replaceFragment(new BedFragment(), Constant.BedFragment, R.id.home_frame);
                 }
                 break;
-            case R.id.txtHistory:
+            case R.id.txtExpenses:
                 break;
             case R.id.txtBloodDonation:
-                txtTitle.setText("Blood Donation");
+                txtTitle.setText("Expenses");
                 if (BloodDonationFragment == null) {
                     fragmentUtils.replaceFragment(new BloodDonationFragment(), Constant.BloodDonationFragment, R.id.home_frame);
                 }
@@ -145,13 +143,13 @@ public class HomeActivity extends BaseActivity  implements View.OnClickListener 
         if (HomeFragment != null) {
             finish();
         } else if (PrescriptionFragment != null) {
-            fragmentUtils.replaceFragment(new HomeFragment(), Constant.HomeFragment, R.id.home_frame);
+            fragmentUtils.replaceFragment(new DashboardFragment(), Constant.HomeFragment, R.id.home_frame);
         } /*else if (ReportFragment != null) {
-            fragmentUtils.replaceFragment(new HomeFragment(), Constant.HomeFragment, R.id.home_frame);
+            fragmentUtils.replaceFragment(new DashboardFragment(), Constant.DashboardFragment, R.id.home_frame);
         } else if (InvoiceFragment != null) {
-            fragmentUtils.replaceFragment(new HomeFragment(), Constant.HomeFragment, R.id.home_frame);
+            fragmentUtils.replaceFragment(new DashboardFragment(), Constant.DashboardFragment, R.id.home_frame);
         } else if (BedFragment != null) {
-            fragmentUtils.replaceFragment(new HomeFragment(), Constant.HomeFragment, R.id.home_frame);
+            fragmentUtils.replaceFragment(new DashboardFragment(), Constant.DashboardFragment, R.id.home_frame);
         }*/ else {
             finish();
         }

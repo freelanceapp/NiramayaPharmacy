@@ -262,13 +262,13 @@
                         app:cardElevation="0dp">
 
                         <TextView
-                            android:id="@+id/txtSettings"
+                            android:id="@+id/txtSetting"
                             android:layout_width="100dp"
                             android:layout_height="59dp"
                             android:gravity="center"
                             android:paddingLeft="8dp"
                             android:paddingRight="8dp"
-                            android:text="Settings"
+                            android:text="Setting"
                             android:textColor="@color/white"
                             android:textSize="@dimen/size_14" />
                     </android.support.v7.widget.CardView>

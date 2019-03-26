@@ -1,7 +1,9 @@
-package com.ibt.niramayapharmacy;
+package com.ibt.niramayapharmacy.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.ibt.niramayapharmacy.R;
 
 public class MainActivity extends AppCompatActivity {
 

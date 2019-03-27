@@ -14,6 +14,7 @@ import com.ibt.niramayapharmacy.ui.fragment.AddMedicineFragment;
 import com.ibt.niramayapharmacy.ui.fragment.DashboardFragment;
 import com.ibt.niramayapharmacy.ui.fragment.InvoiceFragment;
 import com.ibt.niramayapharmacy.ui.fragment.PrescriptionsFragment;
+import com.ibt.niramayapharmacy.ui.fragment.ProfileFragment;
 import com.ibt.niramayapharmacy.utils.BaseActivity;
 import com.ibt.niramayapharmacy.utils.FragmentUtils;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
@@ -79,6 +80,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         Fragment ProfileFragmentTag = fragmentManager.findFragmentByTag(Constant.ProfileFragment);
         Fragment AddMedicineFragmentTag = fragmentManager.findFragmentByTag(Constant.AddMedicineFragment);
         Fragment InvoiceFragmentTag = fragmentManager.findFragmentByTag(Constant.InvoiceFragment);
+        Fragment HomeFragment = fragmentManager.findFragmentByTag(Constant.HomeFragment);
+        Fragment PrescriptionFragment = fragmentManager.findFragmentByTag(Constant.PrescriptionFragment);
+        Fragment ProfileFragment = fragmentManager.findFragmentByTag(Constant.ProfileFragment);
+        Fragment AddMedicineFragment = fragmentManager.findFragmentByTag(Constant.AddMedicineFragment);
 
         switch (v.getId()) {
             case R.id.txtDashboard:
@@ -105,6 +110,12 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                     fragmentUtilsHome.replaceFragment(new AddMedicineFragment(), Constant.AddMedicineFragment, R.id.home_frame);
                 }
                 break;
+            case R.id.txtProfile:
+                txtTitle.setText("Profile");
+                if (ProfileFragment == null) {
+                    fragmentUtilsHome.replaceFragment(new ProfileFragment(), Constant.ProfileFragment, R.id.home_frame);
+                }
+                break;
         }
         slidingRootNav.closeMenu();
     }
@@ -116,6 +127,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         Fragment ProfileFragmentTag = fragmentManager.findFragmentByTag(Constant.ProfileFragment);
         Fragment AddMedicineFragmentTag = fragmentManager.findFragmentByTag(Constant.AddMedicineFragment);
         Fragment InvoiceFragmentTag = fragmentManager.findFragmentByTag(Constant.InvoiceFragment);
+
+        Fragment DashboardFragment = fragmentManager.findFragmentByTag(Constant.HomeFragment);
+        Fragment PrescriptionFragment = fragmentManager.findFragmentByTag(Constant.PrescriptionFragment);
+        Fragment ProfileFragment = fragmentManager.findFragmentByTag(Constant.ProfileFragment);
+        Fragment AddMedicineFragment = fragmentManager.findFragmentByTag(Constant.AddMedicineFragment);
 
         Fragment LatestExpensesFragmentTag = fragmentManager.findFragmentByTag(Constant.LatestExpensesFragment);
         Fragment LatestSalesFragmentTag = fragmentManager.findFragmentByTag(Constant.LatestSalesFragment);
@@ -136,6 +152,19 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         } else if (PrescriptionFragmentTag != null) {
             txtTitle.setText("Dashboard");
             fragmentUtilsHome.replaceBackFragment(new DashboardFragment(), Constant.DashboardFragment, R.id.home_frame);
+        } else if (DashboardFragment != null) {
+            finish();
+        } else if (PrescriptionFragment != null) {
+            txtTitle.setText("Dashboard");
+            fragmentUtilsHome.replaceFragment(new DashboardFragment(), Constant.HomeFragment, R.id.home_frame);
+        } else if (ProfileFragment != null) {
+            txtTitle.setText("Profile");
+            fragmentUtilsHome.replaceFragment(new ProfileFragment(), Constant.ProfileFragment, R.id.home_frame);
+        } else if (AddMedicineFragment != null) {
+            txtTitle.setText("Add Medicine");
+            fragmentUtilsHome.replaceFragment(new AddMedicineFragment(), Constant.AddMedicineFragment, R.id.home_frame);
+        } else {
+            finish();
         }
     }
 }

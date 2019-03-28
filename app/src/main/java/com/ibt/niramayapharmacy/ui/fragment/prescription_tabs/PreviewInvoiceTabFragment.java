@@ -18,7 +18,7 @@ public class PreviewInvoiceTabFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_latest_expenses, container, false);
+        rootView = inflater.inflate(R.layout.fragment_tab_preview_invoice, container, false);
         init();
         return rootView;
     }

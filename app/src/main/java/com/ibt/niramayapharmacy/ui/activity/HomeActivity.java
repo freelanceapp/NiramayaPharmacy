@@ -15,6 +15,7 @@ import com.ibt.niramayapharmacy.ui.fragment.DashboardFragment;
 import com.ibt.niramayapharmacy.ui.fragment.InvoiceFragment;
 import com.ibt.niramayapharmacy.ui.fragment.PrescriptionsFragment;
 import com.ibt.niramayapharmacy.ui.fragment.ProfileFragment;
+import com.ibt.niramayapharmacy.ui.fragment.SalesAndExpensesFragment;
 import com.ibt.niramayapharmacy.utils.BaseActivity;
 import com.ibt.niramayapharmacy.utils.FragmentUtils;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
@@ -74,9 +75,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Fragment HomeFragmentTag = fragmentManager.findFragmentByTag(Constant.HomeFragment);
+        Fragment DashboardFragmentTag = fragmentManager.findFragmentByTag(Constant.DashboardFragment);
         Fragment PrescriptionFragmentTag = fragmentManager.findFragmentByTag(Constant.PrescriptionFragment);
-        Fragment LatestSalesFragmentTag = fragmentManager.findFragmentByTag(Constant.LatestSalesFragment);
+        Fragment SalesAndExpensesFragmentTag = fragmentManager.findFragmentByTag(Constant.SalesAndExpensesFragment);
         Fragment ProfileFragmentTag = fragmentManager.findFragmentByTag(Constant.ProfileFragment);
         Fragment AddMedicineFragmentTag = fragmentManager.findFragmentByTag(Constant.AddMedicineFragment);
         Fragment InvoiceFragmentTag = fragmentManager.findFragmentByTag(Constant.InvoiceFragment);
@@ -88,8 +89,15 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.txtDashboard:
                 txtTitle.setText("Dashboard");
-                if (HomeFragmentTag == null) {
-                    fragmentUtilsHome.replaceFragment(new DashboardFragment(), Constant.HomeFragment, R.id.home_frame);
+                if (DashboardFragmentTag == null) {
+                    fragmentUtilsHome.replaceFragment(new DashboardFragment(), Constant.DashboardFragment, R.id.home_frame);
+                }
+                break;
+            case R.id.txtSales:
+                txtTitle.setText("Sales And Expenses");
+                if (SalesAndExpensesFragmentTag == null) {
+                    fragmentUtilsHome.replaceFragment(new SalesAndExpensesFragment(), Constant.SalesAndExpensesFragment,
+                            R.id.home_frame);
                 }
                 break;
             case R.id.txtPrescription:
@@ -128,7 +136,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         Fragment AddMedicineFragmentTag = fragmentManager.findFragmentByTag(Constant.AddMedicineFragment);
         Fragment InvoiceFragmentTag = fragmentManager.findFragmentByTag(Constant.InvoiceFragment);
 
-        Fragment DashboardFragment = fragmentManager.findFragmentByTag(Constant.HomeFragment);
+        Fragment DashboardFragment = fragmentManager.findFragmentByTag(Constant.DashboardFragment);
         Fragment PrescriptionFragment = fragmentManager.findFragmentByTag(Constant.PrescriptionFragment);
         Fragment ProfileFragment = fragmentManager.findFragmentByTag(Constant.ProfileFragment);
         Fragment AddMedicineFragment = fragmentManager.findFragmentByTag(Constant.AddMedicineFragment);

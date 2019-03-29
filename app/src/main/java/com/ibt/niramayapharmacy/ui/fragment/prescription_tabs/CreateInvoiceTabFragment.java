@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.ibt.niramayapharmacy.R;
 import com.ibt.niramayapharmacy.adapter.ItemsAdapter;
 import com.ibt.niramayapharmacy.modal.items_data_modal.ItemsDataModal;
+import com.ibt.niramayapharmacy.utils.Alerts;
 import com.ibt.niramayapharmacy.utils.BaseFragment;
 
 import java.text.DecimalFormat;
@@ -34,6 +35,7 @@ public class CreateInvoiceTabFragment extends BaseFragment implements View.OnCli
     private double finalItemCost = 0.0;
     private double allItemTotalAmount = 0.0;
     private double allItemTotalDiscountAmount = 0.0;
+    private double remainingAmount = 0.0;
 
     @Nullable
     @Override
@@ -246,6 +248,9 @@ public class CreateInvoiceTabFragment extends BaseFragment implements View.OnCli
     }
 
     private void calculateFinalData() {
+        allItemTotalAmount = 0.0;
+        allItemTotalDiscountAmount = 0.0;
+
         if (itemsDataList.size() > 0) {
             for (int i = 0; i < itemsDataList.size(); i++) {
                 double unitCost = itemsDataList.get(i).getUnitCost();
@@ -255,11 +260,13 @@ public class CreateInvoiceTabFragment extends BaseFragment implements View.OnCli
             }
         }
 
-        double totalDiscountPercent = (allItemTotalDiscountAmount * 100) / allItemTotalAmount;
+        double totalDiscountPercent = 100 - (allItemTotalDiscountAmount * 100) / allItemTotalAmount;
+        String strTotalDiscountPercent = new DecimalFormat("##.##").format(totalDiscountPercent);
 
-        ((TextView) rootView.findViewById(R.id.txtDiscount)).setText("Rs. " + totalDiscountPercent);
-        ((TextView) rootView.findViewById(R.id.txtTax)).setText("");
+        ((TextView) rootView.findViewById(R.id.txtDiscount)).setText(strTotalDiscountPercent + "%");
+        ((TextView) rootView.findViewById(R.id.txtTax)).setText("Rs. 0.00");
         ((TextView) rootView.findViewById(R.id.txtTotal)).setText("Rs. " + allItemTotalDiscountAmount);
+        ((TextView) rootView.findViewById(R.id.txtSubTotal)).setText("Rs. " + allItemTotalDiscountAmount);
         ((TextView) rootView.findViewById(R.id.txtPaid)).setText("Rs. 0.00");
 
     }
@@ -282,7 +289,14 @@ public class CreateInvoiceTabFragment extends BaseFragment implements View.OnCli
         dialogPaid.findViewById(R.id.btnPay).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialogPaid.dismiss();
+                String strAmount = ((EditText) dialogPaid.findViewById(R.id.edtPayAmount)).getText().toString();
+                if (strAmount.isEmpty()) {
+                    Alerts.show(mContext, "Please enter amount..!");
+                } else {
+                    ((TextView) rootView.findViewById(R.id.txtPaid)).setText("Rs. " + strAmount);
+                    ((TextView) rootView.findViewById(R.id.txtRemainingAmount)).setText("Rs. " + remainingAmount);
+                    dialogPaid.dismiss();
+                }
             }
         });
 
@@ -305,7 +319,7 @@ public class CreateInvoiceTabFragment extends BaseFragment implements View.OnCli
                     strAmount = "0.0";
                 }
                 double amountPay = Double.parseDouble(strAmount);
-                double remainingAmount = allItemTotalDiscountAmount - amountPay;
+                remainingAmount = allItemTotalDiscountAmount - amountPay;
 
                 String strAmountPay = "Total amount to pay : Rs. " + remainingAmount;
                 ((EditText) dialogPaid.findViewById(R.id.edtTotalAmount)).setText(strAmountPay);

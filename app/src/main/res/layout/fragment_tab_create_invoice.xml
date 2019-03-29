@@ -235,6 +235,7 @@
                         android:textColor="@color/text_color_a" />
 
                     <TextView
+                        android:id="@+id/txtSubTotal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="11"
@@ -470,6 +471,7 @@
                         android:textColor="@color/text_color_a" />
 
                     <TextView
+                        android:id="@+id/txtRemainingAmount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="11"
